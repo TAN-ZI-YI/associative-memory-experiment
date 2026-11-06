@@ -1,0 +1,1652 @@
+{
+  "protocol": "symbolic-state-intervention-v1",
+  "started_at": "2026-11-06T16:58:37.967113+08:00",
+  "status": "COMPLETE",
+  "source_sha256": {
+    "memory.py": "0463f4d8d5990eba7eb8d9129006b336085102c644a240c8b26cd5180c229cff",
+    "experiment.py": "4b1ea5cbd0d430fe7b17fd4a34b61cd2a640d884c231886a182ce0d552110a80",
+    "test_memory.py": "53bf171004ed4d901b5d21bb2f8561694c13f6d12c0f38443b77794a94d6db5b"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "torch": "2.9.1",
+    "platform": "Darwin",
+    "machine": "arm64",
+    "device": "cpu",
+    "threads": 1
+  },
+  "config": {
+    "seeds": [
+      7,
+      19
+    ],
+    "steps_per_seed": 2000,
+    "batch": 64,
+    "vocabulary": 24,
+    "width": 32,
+    "pairs": 3,
+    "distractors": 16,
+    "evaluation_sequences_per_seed": 256,
+    "learning_rate": 0.002,
+    "optimizer": "Adam",
+    "checkpoint_selection": "final_step_only",
+    "pretrained_weights": false
+  },
+  "limitations": [
+    "Known vocabulary; held-out PAIRS, not unseen symbols or language.",
+    "Pair boundaries and delta updates are architectural/task priors.",
+    "Single-symbol distractors exclude the remembered symbols; the task does not establish robust natural interference.",
+    "A dictionary also solves this task; no superiority, novelty, or efficiency claim is made for this model.",
+    "A changed output is insufficient: donor answers are scored against both histories.",
+    "Forward replacement need not remove an old reverse association; the stale-link diagnostic remains visible.",
+    "Two fixed seeds provide descriptive observations, not statistical significance."
+  ],
+  "results": [
+    {
+      "seed": 7,
+      "initial_parameter_sha256": "80d9a870391eb17ce5f9f72855a7fa7f9c0837b7f43c773b16b8f7ee1d491690",
+      "final_parameter_sha256": "c3e9dd29f7237e6bee0877825052518304f07196614148fab7018c17d876341c",
+      "pair_split_sha256": "ae8466054eafa3cc0be3fed46fec2dc96ced2511cccab1718828a80a93b5188a",
+      "training_curve": [
+        {
+          "step": 1,
+          "loss": 3.1877601146698,
+          "batch_accuracy": 0.0364583320915699
+        },
+        {
+          "step": 250,
+          "loss": 0.0037777463439852,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 500,
+          "loss": 0.0011654230765998363,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 750,
+          "loss": 0.0005812896997667849,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 1000,
+          "loss": 0.0003339036775287241,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 1250,
+          "loss": 0.0002219557500211522,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 1500,
+          "loss": 0.00015498061839025468,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 1750,
+          "loss": 0.00011381923832232133,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 2000,
+          "loss": 8.552437793696299e-05,
+          "batch_accuracy": 1.0
+        }
+      ],
+      "untrained_metrics": {
+        "heldout_both_directions": {
+          "correct": 84,
+          "total": 1536,
+          "fraction": 0.0546875,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "full_state_a": {
+          "correct": 44,
+          "total": 768,
+          "fraction": 0.057291666666666664,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "full_state_b": {
+          "correct": 31,
+          "total": 768,
+          "fraction": 0.040364583333333336,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "zero_state_vs_a": {
+          "correct": 29,
+          "total": 768,
+          "fraction": 0.037760416666666664,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "donor_state_vs_a": {
+          "correct": 42,
+          "total": 768,
+          "fraction": 0.0546875,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "donor_state_vs_donor": {
+          "correct": 31,
+          "total": 768,
+          "fraction": 0.040364583333333336,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "changed_queries_follow_both_histories": {
+          "correct": 0,
+          "total": 512
+        },
+        "new_forward_binding": {
+          "correct": 19,
+          "total": 256,
+          "fraction": 0.07421875,
+          "all_queries_correct": 19,
+          "sequences": 256
+        },
+        "unrelated_bindings_after_update": {
+          "correct": 25,
+          "total": 512,
+          "fraction": 0.048828125,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "stale_reverse_link_retained": {
+          "count": 21,
+          "total": 256
+        },
+        "exact_dictionary_full_history": {
+          "correct": 768,
+          "total": 768,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "exact_dictionary_recent_window": {
+          "correct": 0,
+          "total": 768,
+          "fraction": 0.0,
+          "all_queries_correct": 0,
+          "sequences": 256
+        }
+      },
+      "metrics": {
+        "heldout_both_directions": {
+          "correct": 1536,
+          "total": 1536,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "full_state_a": {
+          "correct": 768,
+          "total": 768,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "full_state_b": {
+          "correct": 768,
+          "total": 768,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "zero_state_vs_a": {
+          "correct": 35,
+          "total": 768,
+          "fraction": 0.045572916666666664,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "donor_state_vs_a": {
+          "correct": 256,
+          "total": 768,
+          "fraction": 0.3333333333333333,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "donor_state_vs_donor": {
+          "correct": 768,
+          "total": 768,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "changed_queries_follow_both_histories": {
+          "correct": 512,
+          "total": 512
+        },
+        "new_forward_binding": {
+          "correct": 256,
+          "total": 256,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "unrelated_bindings_after_update": {
+          "correct": 512,
+          "total": 512,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "stale_reverse_link_retained": {
+          "count": 256,
+          "total": 256
+        },
+        "exact_dictionary_full_history": {
+          "correct": 768,
+          "total": 768,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "exact_dictionary_recent_window": {
+          "correct": 0,
+          "total": 768,
+          "fraction": 0.0,
+          "all_queries_correct": 0,
+          "sequences": 256
+        }
+      },
+      "controls": {
+        "same_recent_inputs": true,
+        "same_early_symbol_counts": true,
+        "same_model_parameters": true,
+        "owner_source_free_read_max_difference": 0.0,
+        "query_does_not_write_state": true
+      },
+      "examples": [
+        {
+          "seed": 7,
+          "sequence": 0,
+          "early_a": [
+            [
+              23,
+              18
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              6,
+              16
+            ]
+          ],
+          "early_b": [
+            [
+              16,
+              18
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              6,
+              23
+            ]
+          ],
+          "recent_shared": [
+            [
+              20,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              20
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              17,
+              0
+            ],
+            [
+              14,
+              0
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              0,
+              24
+            ],
+            [
+              0,
+              11
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              17
+            ]
+          ],
+          "cues": [
+            18,
+            6,
+            3
+          ],
+          "expected_a": [
+            23,
+            16,
+            7
+          ],
+          "expected_b": [
+            16,
+            23,
+            7
+          ],
+          "answers_a": [
+            23,
+            16,
+            7
+          ],
+          "answers_b": [
+            16,
+            23,
+            7
+          ],
+          "answers_zero": [
+            20,
+            20,
+            20
+          ],
+          "update": [
+            18,
+            19
+          ],
+          "answers_updated": [
+            19,
+            16,
+            7
+          ],
+          "expected_updated": [
+            19,
+            16,
+            7
+          ],
+          "old_partner_cue": 23,
+          "old_partner_answer_after_update": 18
+        },
+        {
+          "seed": 7,
+          "sequence": 1,
+          "early_a": [
+            [
+              3,
+              7
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              16,
+              24
+            ]
+          ],
+          "early_b": [
+            [
+              24,
+              7
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              16,
+              3
+            ]
+          ],
+          "recent_shared": [
+            [
+              23,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              10
+            ],
+            [
+              19,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              19
+            ],
+            [
+              17,
+              0
+            ],
+            [
+              0,
+              20
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              15,
+              0
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              0,
+              10
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              0,
+              15
+            ]
+          ],
+          "cues": [
+            16,
+            7,
+            5
+          ],
+          "expected_a": [
+            24,
+            3,
+            13
+          ],
+          "expected_b": [
+            3,
+            24,
+            13
+          ],
+          "answers_a": [
+            24,
+            3,
+            13
+          ],
+          "answers_b": [
+            3,
+            24,
+            13
+          ],
+          "answers_zero": [
+            20,
+            20,
+            20
+          ],
+          "update": [
+            16,
+            21
+          ],
+          "answers_updated": [
+            21,
+            3,
+            13
+          ],
+          "expected_updated": [
+            21,
+            3,
+            13
+          ],
+          "old_partner_cue": 24,
+          "old_partner_answer_after_update": 16
+        },
+        {
+          "seed": 7,
+          "sequence": 2,
+          "early_a": [
+            [
+              23,
+              16
+            ],
+            [
+              19,
+              22
+            ],
+            [
+              12,
+              5
+            ]
+          ],
+          "early_b": [
+            [
+              23,
+              16
+            ],
+            [
+              19,
+              12
+            ],
+            [
+              22,
+              5
+            ]
+          ],
+          "recent_shared": [
+            [
+              20,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              17,
+              0
+            ],
+            [
+              14,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              17,
+              0
+            ],
+            [
+              17,
+              0
+            ],
+            [
+              0,
+              17
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              13
+            ],
+            [
+              18,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              0,
+              11
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "cues": [
+            5,
+            19,
+            16
+          ],
+          "expected_a": [
+            12,
+            22,
+            23
+          ],
+          "expected_b": [
+            22,
+            12,
+            23
+          ],
+          "answers_a": [
+            12,
+            22,
+            23
+          ],
+          "answers_b": [
+            22,
+            12,
+            23
+          ],
+          "answers_zero": [
+            20,
+            20,
+            20
+          ],
+          "update": [
+            5,
+            21
+          ],
+          "answers_updated": [
+            21,
+            22,
+            23
+          ],
+          "expected_updated": [
+            21,
+            22,
+            23
+          ],
+          "old_partner_cue": 12,
+          "old_partner_answer_after_update": 5
+        },
+        {
+          "seed": 7,
+          "sequence": 3,
+          "early_a": [
+            [
+              4,
+              24
+            ],
+            [
+              16,
+              20
+            ],
+            [
+              21,
+              2
+            ]
+          ],
+          "early_b": [
+            [
+              4,
+              20
+            ],
+            [
+              16,
+              24
+            ],
+            [
+              21,
+              2
+            ]
+          ],
+          "recent_shared": [
+            [
+              19,
+              0
+            ],
+            [
+              0,
+              18
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              15,
+              0
+            ],
+            [
+              0,
+              14
+            ],
+            [
+              0,
+              17
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              0,
+              9
+            ],
+            [
+              17,
+              0
+            ],
+            [
+              11,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              15,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              8,
+              0
+            ]
+          ],
+          "cues": [
+            4,
+            16,
+            21
+          ],
+          "expected_a": [
+            24,
+            20,
+            2
+          ],
+          "expected_b": [
+            20,
+            24,
+            2
+          ],
+          "answers_a": [
+            24,
+            20,
+            2
+          ],
+          "answers_b": [
+            20,
+            24,
+            2
+          ],
+          "answers_zero": [
+            20,
+            20,
+            20
+          ],
+          "update": [
+            4,
+            13
+          ],
+          "answers_updated": [
+            13,
+            20,
+            2
+          ],
+          "expected_updated": [
+            13,
+            20,
+            2
+          ],
+          "old_partner_cue": 24,
+          "old_partner_answer_after_update": 4
+        }
+      ]
+    },
+    {
+      "seed": 19,
+      "initial_parameter_sha256": "93f11e8b3919404eb7a304f786755407b1c2b00769185b3b02b04a590bc36bde",
+      "final_parameter_sha256": "84e79a6f2ce1cc45a517cc78e8a70e6e67bd5adcaffb5b81708d05dda90588bc",
+      "pair_split_sha256": "ae8466054eafa3cc0be3fed46fec2dc96ced2511cccab1718828a80a93b5188a",
+      "training_curve": [
+        {
+          "step": 1,
+          "loss": 3.1794002056121826,
+          "batch_accuracy": 0.046875
+        },
+        {
+          "step": 250,
+          "loss": 0.003023402998223901,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 500,
+          "loss": 0.0009316331706941128,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 750,
+          "loss": 0.00045350680011324584,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 1000,
+          "loss": 0.0002800778311211616,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 1250,
+          "loss": 0.00018561513570602983,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 1500,
+          "loss": 0.00012966709618922323,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 1750,
+          "loss": 9.43421691772528e-05,
+          "batch_accuracy": 1.0
+        },
+        {
+          "step": 2000,
+          "loss": 7.099975482560694e-05,
+          "batch_accuracy": 1.0
+        }
+      ],
+      "untrained_metrics": {
+        "heldout_both_directions": {
+          "correct": 39,
+          "total": 1536,
+          "fraction": 0.025390625,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "full_state_a": {
+          "correct": 22,
+          "total": 768,
+          "fraction": 0.028645833333333332,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "full_state_b": {
+          "correct": 18,
+          "total": 768,
+          "fraction": 0.0234375,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "zero_state_vs_a": {
+          "correct": 10,
+          "total": 768,
+          "fraction": 0.013020833333333334,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "donor_state_vs_a": {
+          "correct": 25,
+          "total": 768,
+          "fraction": 0.032552083333333336,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "donor_state_vs_donor": {
+          "correct": 18,
+          "total": 768,
+          "fraction": 0.0234375,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "changed_queries_follow_both_histories": {
+          "correct": 0,
+          "total": 512
+        },
+        "new_forward_binding": {
+          "correct": 7,
+          "total": 256,
+          "fraction": 0.02734375,
+          "all_queries_correct": 7,
+          "sequences": 256
+        },
+        "unrelated_bindings_after_update": {
+          "correct": 16,
+          "total": 512,
+          "fraction": 0.03125,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "stale_reverse_link_retained": {
+          "count": 7,
+          "total": 256
+        },
+        "exact_dictionary_full_history": {
+          "correct": 768,
+          "total": 768,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "exact_dictionary_recent_window": {
+          "correct": 0,
+          "total": 768,
+          "fraction": 0.0,
+          "all_queries_correct": 0,
+          "sequences": 256
+        }
+      },
+      "metrics": {
+        "heldout_both_directions": {
+          "correct": 1536,
+          "total": 1536,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "full_state_a": {
+          "correct": 768,
+          "total": 768,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "full_state_b": {
+          "correct": 768,
+          "total": 768,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "zero_state_vs_a": {
+          "correct": 61,
+          "total": 768,
+          "fraction": 0.07942708333333333,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "donor_state_vs_a": {
+          "correct": 256,
+          "total": 768,
+          "fraction": 0.3333333333333333,
+          "all_queries_correct": 0,
+          "sequences": 256
+        },
+        "donor_state_vs_donor": {
+          "correct": 768,
+          "total": 768,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "changed_queries_follow_both_histories": {
+          "correct": 512,
+          "total": 512
+        },
+        "new_forward_binding": {
+          "correct": 256,
+          "total": 256,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "unrelated_bindings_after_update": {
+          "correct": 512,
+          "total": 512,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "stale_reverse_link_retained": {
+          "count": 256,
+          "total": 256
+        },
+        "exact_dictionary_full_history": {
+          "correct": 768,
+          "total": 768,
+          "fraction": 1.0,
+          "all_queries_correct": 256,
+          "sequences": 256
+        },
+        "exact_dictionary_recent_window": {
+          "correct": 0,
+          "total": 768,
+          "fraction": 0.0,
+          "all_queries_correct": 0,
+          "sequences": 256
+        }
+      },
+      "controls": {
+        "same_recent_inputs": true,
+        "same_early_symbol_counts": true,
+        "same_model_parameters": true,
+        "owner_source_free_read_max_difference": 0.0,
+        "query_does_not_write_state": true
+      },
+      "examples": [
+        {
+          "seed": 19,
+          "sequence": 0,
+          "early_a": [
+            [
+              11,
+              2
+            ],
+            [
+              24,
+              6
+            ],
+            [
+              4,
+              3
+            ]
+          ],
+          "early_b": [
+            [
+              11,
+              2
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              24
+            ]
+          ],
+          "recent_shared": [
+            [
+              0,
+              22
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              20
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              0,
+              19
+            ],
+            [
+              20,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              0,
+              14
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              0,
+              13
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              0,
+              22
+            ],
+            [
+              23,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "cues": [
+            4,
+            6,
+            2
+          ],
+          "expected_a": [
+            3,
+            24,
+            11
+          ],
+          "expected_b": [
+            24,
+            3,
+            11
+          ],
+          "answers_a": [
+            3,
+            24,
+            11
+          ],
+          "answers_b": [
+            24,
+            3,
+            11
+          ],
+          "answers_zero": [
+            16,
+            16,
+            16
+          ],
+          "update": [
+            4,
+            16
+          ],
+          "answers_updated": [
+            16,
+            24,
+            11
+          ],
+          "expected_updated": [
+            16,
+            24,
+            11
+          ],
+          "old_partner_cue": 3,
+          "old_partner_answer_after_update": 4
+        },
+        {
+          "seed": 19,
+          "sequence": 1,
+          "early_a": [
+            [
+              1,
+              17
+            ],
+            [
+              3,
+              16
+            ],
+            [
+              7,
+              10
+            ]
+          ],
+          "early_b": [
+            [
+              1,
+              16
+            ],
+            [
+              3,
+              17
+            ],
+            [
+              7,
+              10
+            ]
+          ],
+          "recent_shared": [
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              23,
+              0
+            ],
+            [
+              0,
+              13
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              24,
+              0
+            ],
+            [
+              18,
+              0
+            ],
+            [
+              15,
+              0
+            ],
+            [
+              19,
+              0
+            ],
+            [
+              19,
+              0
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              24,
+              0
+            ],
+            [
+              0,
+              21
+            ]
+          ],
+          "cues": [
+            3,
+            1,
+            7
+          ],
+          "expected_a": [
+            16,
+            17,
+            10
+          ],
+          "expected_b": [
+            17,
+            16,
+            10
+          ],
+          "answers_a": [
+            16,
+            17,
+            10
+          ],
+          "answers_b": [
+            17,
+            16,
+            10
+          ],
+          "answers_zero": [
+            16,
+            16,
+            16
+          ],
+          "update": [
+            3,
+            8
+          ],
+          "answers_updated": [
+            8,
+            17,
+            10
+          ],
+          "expected_updated": [
+            8,
+            17,
+            10
+          ],
+          "old_partner_cue": 16,
+          "old_partner_answer_after_update": 3
+        },
+        {
+          "seed": 19,
+          "sequence": 2,
+          "early_a": [
+            [
+              21,
+              20
+            ],
+            [
+              11,
+              22
+            ],
+            [
+              10,
+              16
+            ]
+          ],
+          "early_b": [
+            [
+              21,
+              10
+            ],
+            [
+              11,
+              22
+            ],
+            [
+              20,
+              16
+            ]
+          ],
+          "recent_shared": [
+            [
+              0,
+              5
+            ],
+            [
+              17,
+              0
+            ],
+            [
+              0,
+              23
+            ],
+            [
+              14,
+              0
+            ],
+            [
+              0,
+              9
+            ],
+            [
+              0,
+              19
+            ],
+            [
+              0,
+              14
+            ],
+            [
+              0,
+              17
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              15,
+              0
+            ],
+            [
+              0,
+              19
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              23,
+              0
+            ]
+          ],
+          "cues": [
+            16,
+            21,
+            11
+          ],
+          "expected_a": [
+            10,
+            20,
+            22
+          ],
+          "expected_b": [
+            20,
+            10,
+            22
+          ],
+          "answers_a": [
+            10,
+            20,
+            22
+          ],
+          "answers_b": [
+            20,
+            10,
+            22
+          ],
+          "answers_zero": [
+            16,
+            16,
+            16
+          ],
+          "update": [
+            16,
+            24
+          ],
+          "answers_updated": [
+            24,
+            20,
+            22
+          ],
+          "expected_updated": [
+            24,
+            20,
+            22
+          ],
+          "old_partner_cue": 10,
+          "old_partner_answer_after_update": 16
+        },
+        {
+          "seed": 19,
+          "sequence": 3,
+          "early_a": [
+            [
+              5,
+              13
+            ],
+            [
+              17,
+              3
+            ],
+            [
+              4,
+              10
+            ]
+          ],
+          "early_b": [
+            [
+              5,
+              3
+            ],
+            [
+              17,
+              13
+            ],
+            [
+              4,
+              10
+            ]
+          ],
+          "recent_shared": [
+            [
+              0,
+              14
+            ],
+            [
+              0,
+              16
+            ],
+            [
+              0,
+              15
+            ],
+            [
+              0,
+              19
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              23,
+              0
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              15,
+              0
+            ],
+            [
+              15,
+              0
+            ],
+            [
+              0,
+              11
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              11
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "cues": [
+            17,
+            5,
+            10
+          ],
+          "expected_a": [
+            3,
+            13,
+            4
+          ],
+          "expected_b": [
+            13,
+            3,
+            4
+          ],
+          "answers_a": [
+            3,
+            13,
+            4
+          ],
+          "answers_b": [
+            13,
+            3,
+            4
+          ],
+          "answers_zero": [
+            16,
+            16,
+            16
+          ],
+          "update": [
+            17,
+            1
+          ],
+          "answers_updated": [
+            1,
+            13,
+            4
+          ],
+          "expected_updated": [
+            1,
+            13,
+            4
+          ],
+          "old_partner_cue": 3,
+          "old_partner_answer_after_update": 17
+        }
+      ]
+    }
+  ],
+  "elapsed_seconds": 43.35805741598597,
+  "finished_at": "2026-11-06T16:59:21.325545+08:00",
+  "export": {
+    "omitted_example_fields": [
+      "state_a",
+      "state_b",
+      "state_updated"
+    ],
+    "note": "All scores, controls, curves and first-four examples per seed are retained. Dense matrices and checkpoints can be regenerated by experiment.py."
+  }
+}
