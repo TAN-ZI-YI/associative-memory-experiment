@@ -1,10 +1,10 @@
 {
   "protocol": "symbolic-state-intervention-v1",
-  "started_at": "2026-11-06T16:58:37.967113+08:00",
+  "started_at": "2026-11-06T17:09:33.544917+08:00",
   "status": "COMPLETE",
   "source_sha256": {
     "memory.py": "0463f4d8d5990eba7eb8d9129006b336085102c644a240c8b26cd5180c229cff",
-    "experiment.py": "4b1ea5cbd0d430fe7b17fd4a34b61cd2a640d884c231886a182ce0d552110a80",
+    "experiment.py": "dc45b90396052aa90d5c8bf99ab260211c80c91ecdf9a055561efce71a4e32e0",
     "test_memory.py": "53bf171004ed4d901b5d21bb2f8561694c13f6d12c0f38443b77794a94d6db5b"
   },
   "environment": {
@@ -33,13 +33,13 @@
     "pretrained_weights": false
   },
   "limitations": [
-    "Known vocabulary; held-out PAIRS, not unseen symbols or language.",
-    "Pair boundaries and delta updates are architectural/task priors.",
-    "Single-symbol distractors exclude the remembered symbols; the task does not establish robust natural interference.",
-    "A dictionary also solves this task; no superiority, novelty, or efficiency claim is made for this model.",
-    "A changed output is insufficient: donor answers are scored against both histories.",
-    "Forward replacement need not remove an old reverse association; the stale-link diagnostic remains visible.",
-    "Two fixed seeds provide descriptive observations, not statistical significance."
+    "Evaluation holds out pair combinations within a known vocabulary.",
+    "The task supplies pair boundaries; the model uses delta-rule updates.",
+    "Single-symbol distractors are drawn from symbols outside the remembered pairs. Naturalistic interference remains a follow-up question.",
+    "The complete-history dictionary also solves this task, providing an exact-storage baseline.",
+    "Donor-state answers are scored against both histories to identify which contents determine recall.",
+    "The stale-link diagnostic measures whether an old reverse association remains after a forward replacement.",
+    "Results describe two fixed seeds. Statistical generalization requires additional runs."
   ],
   "results": [
     {
@@ -1639,8 +1639,8 @@
       ]
     }
   ],
-  "elapsed_seconds": 43.35805741598597,
-  "finished_at": "2026-11-06T16:59:21.325545+08:00",
+  "elapsed_seconds": 43.45714166702237,
+  "finished_at": "2026-11-06T17:10:17.002513+08:00",
   "export": {
     "omitted_example_fields": [
       "state_a",

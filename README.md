@@ -1,9 +1,7 @@
-# Persistent State Lab
+# Associative Memory Experiment
 
 **Can an earlier experience still determine an answer after the recent inputs
 become identical?** A small, reproducible experiment in learned associative memory.
-
-[中文说明](README.zh-CN.md)
 
 Two histories contain the same six symbols with different pairings. They then
 receive the same sixteen distractor events and the same questions. The model
@@ -19,7 +17,7 @@ state from A → 23        state from B → 16
 ```
 
 The numbers illustrate one observed test case. The full protocol scores 256
-held-out sequences per seed; it does not select examples for their accuracy.
+held-out sequences per seed and displays the first four examples from each seed.
 
 ## Why this question
 
@@ -82,9 +80,10 @@ and checkpoints remain in each local run directory. Create the same export with:
 python export_results.py runs/my-first-run/report.json results/my-run.json
 ```
 
-These observations establish state-dependent symbolic retention under this
-protocol. The dictionary baseline also solves the task: this study establishes
-neither an advantage over exact storage nor a new memory algorithm.
+These observations show that recall follows the retained state's contents under
+this protocol. The complete-history dictionary reaches the same recall score;
+the intervention controls reveal how the learned state stores and updates
+associations.
 
 ## Mechanism and experimental boundaries
 
@@ -104,7 +103,7 @@ state owner keeps no event text or symbol sequence for later replay.
 
 The task provides pair boundaries; all 24 symbols are known during training,
 while evaluation pairs are held out. Distractors are single-symbol events drawn
-from other symbols. State width is 32, so this is not a capacity stress test.
+from other symbols. The experiment uses a fixed state width of 32.
 Natural-language understanding, unfamiliar symbols, realistic interference and
 reliable bidirectional correction remain outside the demonstrated behavior.
 Two fixed seeds provide descriptive results.
@@ -119,19 +118,15 @@ Two fixed seeds provide descriptive results.
 - [`results/reference.json`](results/reference.json): a fresh synthetic run,
   including successful measurements and the stale-link failure.
 
-## Contribution and method attribution
+## Contributions and references
 
 TAN-ZI-YI directs the research questions, desired behaviors, design discussion and
 evaluation priorities. AI coding agents implemented and adapted the code and ran
-the recorded experiments. This repository does not represent code independently
-written by TAN-ZI-YI, and the specific delta-rule mechanism is not claimed as an
-original invention. The public study packages one implemented candidate to make
-its behavior and remaining gaps inspectable.
+the recorded experiments.
 
 The associative update belongs to the established fast-weight/delta-rule family.
 For related background, see Schlag, Irie and Schmidhuber,
 [Linear Transformers Are Secretly Fast Weight Programmers](https://arxiv.org/abs/2102.11174)
-(2021). This repository is a small independent experiment, not a reproduction of
-that paper.
+(2021).
 
 Released under the [MIT License](LICENSE).

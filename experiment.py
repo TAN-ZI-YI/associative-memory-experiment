@@ -177,13 +177,13 @@ def run(output, steps=2000, seeds=(7, 19)):
                    "evaluation_sequences_per_seed": 256, "learning_rate": .002, "optimizer": "Adam",
                    "checkpoint_selection": "final_step_only", "pretrained_weights": False},
         "limitations": [
-            "Known vocabulary; held-out PAIRS, not unseen symbols or language.",
-            "Pair boundaries and delta updates are architectural/task priors.",
-            "Single-symbol distractors exclude the remembered symbols; the task does not establish robust natural interference.",
-            "A dictionary also solves this task; no superiority, novelty, or efficiency claim is made for this model.",
-            "A changed output is insufficient: donor answers are scored against both histories.",
-            "Forward replacement need not remove an old reverse association; the stale-link diagnostic remains visible.",
-            "Two fixed seeds provide descriptive observations, not statistical significance.",
+            "Evaluation holds out pair combinations within a known vocabulary.",
+            "The task supplies pair boundaries; the model uses delta-rule updates.",
+            "Single-symbol distractors are drawn from symbols outside the remembered pairs. Naturalistic interference remains a follow-up question.",
+            "The complete-history dictionary also solves this task, providing an exact-storage baseline.",
+            "Donor-state answers are scored against both histories to identify which contents determine recall.",
+            "The stale-link diagnostic measures whether an old reverse association remains after a forward replacement.",
+            "Results describe two fixed seeds. Statistical generalization requires additional runs.",
         ], "results": [],
     }
     # Freeze the protocol before training; evaluation never chooses a checkpoint.
